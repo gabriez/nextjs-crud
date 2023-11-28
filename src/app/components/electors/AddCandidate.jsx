@@ -14,7 +14,7 @@ const AddCandidate = () => {
   })
 
   const updateCandidate = async (updateData) => {
-    const {data} = await axios.put(`${process.env.NEXT_PUBLIC_BACKEND_API}candidates/${dataCandidato.id}`, updateData).then(response => response).catch(error => toast.error(error.message))
+    const {data} = await axios.put(`${process.env.NEXT_PUBLIC_BACKEND_API}candidates/${dataCandidato.id}`, updateData).then(response => toast.success('Editó correctamente el candidato')).catch(error => toast.error(error.message))
     setDataCandidato({
       id: '',
       name: '',
@@ -69,7 +69,7 @@ const AddCandidate = () => {
 
   return (
     <form onSubmit={handleSubmit}>
-      <fieldset className="flex xl:flex-wrap flex-col xl:flex-row text-white xl:gap-5">
+      <fieldset id="editContent" className="flex xl:flex-wrap flex-col xl:flex-row text-white xl:gap-5">
         <legend className="w-full text-center text-xl font-semibold mb-2 lg:mb-0">
             Agrega un candidato
         </legend>
