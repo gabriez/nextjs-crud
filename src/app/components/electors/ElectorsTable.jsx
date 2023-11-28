@@ -19,14 +19,14 @@ const ElectorsTable = () => {
 
     const deleteCandidate = async (id) => {
       setLoading(true)
-      await axios.delete(`${process.env.BACKEND_API}candidates/${id}`).then(response => response).catch(error => console.error(error))
+      await axios.delete(`${process.env.NEXT_PUBLIC_BACKEND_API}candidates/${id}`).then(response => response).catch(error => console.error(error))
       
       setLimit(prevState => prevState - 1)
     }
     useEffect(()=> {
       const getCandidates = async () => {
         setLoading(true)
-        const {data} = await axios(`${process.env.BACKEND_API}candidates?limit=${limit}&offset=${offset}`).then(response => response).catch(error => console.error(error))
+        const {data} = await axios(`${process.env.NEXT_PUBLIC_BACKEND_API}candidates?limit=${limit}&offset=${offset}`).then(response => response).catch(error => console.error(error))
         if (data.count < limit || limit < 10) setLimit(data.count) 
         setCount(data.count)
         setCandidates([...data.data])

@@ -5,7 +5,7 @@ import { revalidatePath } from 'next/cache'
 import { headers } from "next/headers";
 import { redirect } from "next/navigation";
 
-const BASEURL = process.env.BACKEND_API;
+const BASEURL = process.env.NEXT_PUBLIC_BACKEND_API;
 
 const schema = Joi.object({
     bestCandidate: Joi.string().required().error(errors => {

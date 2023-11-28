@@ -36,7 +36,7 @@ const FormVotes = ({}) => {
     } 
 
     const getCandidates = async () => {
-        const data = await axios(`${process.env.BACKEND_API}candidates`).then(response => response.data.data).
+        const data = await axios(`${process.env.NEXT_PUBLIC_BACKEND_API}candidates`).then(response => response.data.data).
         catch(error => console.error(error))
         setListCandidates([...data]);
     }

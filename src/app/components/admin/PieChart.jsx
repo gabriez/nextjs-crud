@@ -112,7 +112,7 @@ const PieChart = () => {
   })
 
   const getData = async () => {
-    const {data} = await axios(`${process.env.BACKEND_API}count`).then(response => response).catch(error => console.error(error))
+    const {data} = await axios(`${process.env.NEXT_PUBLIC_BACKEND_API}count`).then(response => response).catch(error => console.error(error))
     setWorstData({
       labels: data.countWorst.map(item => item.name),
       color: '#FFF',

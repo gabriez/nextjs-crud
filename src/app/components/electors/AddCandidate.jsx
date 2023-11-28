@@ -14,7 +14,7 @@ const AddCandidate = () => {
   })
 
   const updateCandidate = async (updateData) => {
-    const {data} = await axios.put(`${process.env.BACKEND_API}candidates/${dataCandidato.id}`, updateData).then(response => response).catch(error => toast.error(error.message))
+    const {data} = await axios.put(`${process.env.NEXT_PUBLIC_BACKEND_API}candidates/${dataCandidato.id}`, updateData).then(response => response).catch(error => toast.error(error.message))
     setDataCandidato({
       id: '',
       name: '',
@@ -29,7 +29,7 @@ const AddCandidate = () => {
 
   const createCandidate = async (updateData) => {
 
-    const {data} = await axios.post(`${process.env.BACKEND_API}candidates`, updateData).then(response => toast.success('Se agregó exitosamente el candidato')).catch(error => toast.error(error.message))
+    const {data} = await axios.post(`${process.env.NEXT_PUBLIC_BACKEND_API}candidates`, updateData).then(response => toast.success('Se agregó exitosamente el candidato')).catch(error => toast.error(error.message))
     setDataCandidato({
       id: '',
       name: '',

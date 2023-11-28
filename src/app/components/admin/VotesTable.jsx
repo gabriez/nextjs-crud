@@ -16,7 +16,7 @@ const VotesTable = () => {
     useEffect(()=> {
         const getVotes = async () => {
             setLoading(true)
-            const data = await axios(`${process.env.BACKEND_API}votes?limit=${limit}&offset=${offset}`).then(response => response.data).catch(error => console.error(error))
+            const data = await axios(`${process.env.NEXT_PUBLIC_BACKEND_API}votes?limit=${limit}&offset=${offset}`).then(response => response.data).catch(error => console.error(error))
             if (data.count < limit || limit < 10) setLimit(data.count) 
             setCount(data.count)
             setVotes(data.data)
