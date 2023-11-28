@@ -60,29 +60,30 @@ const PieChart = () => {
 
   const getData = async () => {
     const {data} = await axios(`${process.env.NEXT_PUBLIC_BACKEND_API}count`).then(response => response).catch(error => console.error(error))
+    console.log(data)
     setWorstData({
-      labels: data.countWorst.length > 0 ? data.countWorst.map(item => item.name) : ['No hay votos'],
+      labels: data?.length === 0 ? ['No hay votos'] : data.countWorst.map(item => item.name),
       color: '#FFF',
       datasets: [
         {
           label: '# de votos',
-          data: data.countWorst.length > 0 ? data.countWorst.map(item => item.quantity) : [0],
-          backgroundColor: data.countWorst.length > 0 ? data.countWorst.map(item => item.color) : ['#FFF'],
-          borderColor: data.countWorst.length > 0 ? data.countWorst.map(item => item.color) : ['#FFF'],
+          data: data?.length === 0  ?   [1] : data.countWorst.map(item => item.quantity),
+          backgroundColor: data?.length === 0 ?  ['#FFF'] : data.countWorst.map(item => item.color),
+          borderColor: data?.length === 0  ?  ['#FFF'] : data.countWorst.map(item => item.color),
           borderWidth: 1,
           color: '#FFF'
         },
       ]
     })
     setBestData({
-      labels: data.countBest.length > 0 ? data.countBest.map(item => item.name) : ['No hay votos'],
+      labels: data?.length === 0  ?  ['No hay votos'] : data.countBest.map(item => item.name) ,
       color: '#FFF',
       datasets: [
         {
           label: '# de votos',
-          data: data.countBest.length > 0 ?  data.countBest.map(item => item.quantity) : [0],
-          backgroundColor:data.countBest.length > 0 ? data.countBest.map(item => item.color)  : ['#FFF'],
-          borderColor: data.countBest.length > 0 ? data.countBest.map(item => item.color)  : ['#FFF'],
+          data: data?.length === 0  ?  [1] :  data.countBest.map(item => item.quantity) ,
+          backgroundColor:data?.length === 0  ?  ['#FFF'] : data.countBest.map(item => item.color)  ,
+          borderColor: data?.length === 0  ? ['#FFF'] : data.countBest.map(item => item.color),
           borderWidth: 1,
           color: '#FFF'
         },
@@ -100,7 +101,7 @@ const PieChart = () => {
 
   return (
      <div className='mt-10 bg-gray-600 rounded-md shadow-slate-500 flex md:flex-row flex-col md:gap-0 gap-6 shadow-md mx-auto w-4/5 px-7 py-4 '>
-        <div className='md:w-2/4 text-white md:border-r-2 md:border-r-gray-500 border-r-0  border-b-2 border-b-gray-500 pr-2'>
+        <div className='md:w-2/4 text-white md:border-r-2 md:border-r-gray-500 border-r-0  border-b-2 md:border-b-0 border-b-gray-500 pr-2'>
             <h3 className='text-white text-2xl text-center font-bold mb-2'>Mejores candidatos</h3>
          <Doughnut options={options} data={bestData} />
         </div>
