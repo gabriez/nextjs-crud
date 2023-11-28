@@ -65,7 +65,7 @@ const PieChart = () => {
       color: '#FFF',
       datasets: [
         {
-          label: '# of Votes',
+          label: '# de votos',
           data: data.countWorst.length > 0 ? data.countWorst.map(item => item.quantity) : [0],
           backgroundColor: data.countWorst.length > 0 ? data.countWorst.map(item => item.color) : ['#FFF'],
           borderColor: data.countWorst.length > 0 ? data.countWorst.map(item => item.color) : ['#FFF'],
@@ -79,7 +79,7 @@ const PieChart = () => {
       color: '#FFF',
       datasets: [
         {
-          label: '# of Votes',
+          label: '# de votos',
           data: data.countBest.length > 0 ?  data.countBest.map(item => item.quantity) : [0],
           backgroundColor:data.countBest.length > 0 ? data.countBest.map(item => item.color)  : ['#FFF'],
           borderColor: data.countBest.length > 0 ? data.countBest.map(item => item.color)  : ['#FFF'],
