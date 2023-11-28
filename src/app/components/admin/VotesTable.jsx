@@ -22,7 +22,7 @@ const VotesTable = () => {
             setLoading(false)
         }
         getVotes()
-    }, [limit])
+    }, [limit, offset])
 
     const handleForward = () => { 
         setOffset( prevState => {
