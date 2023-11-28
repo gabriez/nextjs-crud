@@ -2,6 +2,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { useSurveyContext } from "@/app/context/SurveyProvider";
+import Loading from '../Loading'
 
 const ElectorsTable = () => {
   const {editCandidate, candidate: candidateChange, update} = useSurveyContext();
