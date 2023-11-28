@@ -8,10 +8,10 @@ import { redirect } from "next/navigation";
 const BASEURL = process.env.BACKEND_API;
 
 const schema = Joi.object({
-    bestCandidate: Joi.number().required().error(errors => {
+    bestCandidate: Joi.string().required().error(errors => {
         errors.forEach(err => {
           switch (err.code) {
-            case "number.empty":
+            case "string.empty":
               err.message = "El campo no puede estar vacío";
               break;
             default:
@@ -38,10 +38,10 @@ const schema = Joi.object({
         });
         return errors;
       }),
-    worstCandidate: Joi.number().required().error(errors => {
+    worstCandidate: Joi.string().required().error(errors => {
         errors.forEach(err => {
           switch (err.code) {
-            case "number.empty":
+            case "string.empty":
               err.message = "El campo no puede estar vacío";
               break;
             default:
@@ -88,17 +88,19 @@ const schema = Joi.object({
 export async function createVote(prevState, formData ) {
 
     const { error, value } = schema.validate({ 
-        bestCandidate: Number(formData.get('bestCandidate')), 
+        bestCandidate: formData.get('bestCandidate'), 
         bestCDescription: formData.get('bestCDescription'), 
-        worstCandidate: Number(formData.get('worstCandidate')),
+        worstCandidate: formData.get('worstCandidate'),
         worstCDescription: formData.get('worstCDescription'), 
         email: formData.get('email'), 
         media: formData.get('media'), 
     
     }, {abortEarly: false});
+    value.bestCandidate = Number(value.bestCandidate)
+    value.worstCandidate = Number(value.worstCandidate)
+
 
     if (error) {
-        
         return {
             type: 400,
             error: error.details
@@ -108,22 +110,21 @@ export async function createVote(prevState, formData ) {
     
     try {
         const objectSend = value
-        console.log(BASEURL)
 
-        await axios.post(`${BASEURL}votes`, objectSend).then(data => data.data).catch(error => console.error(error));
+        await axios.post(`${BASEURL}votes`, objectSend);
         revalidatePath('/')
-        revalidatePath('/admin')
         
         return {
             type: 200, 
             message: 'Se guardó su voto',
             error: []
         }
-    } catch (error) {
+    } catch (er) {
+      
         return {
-            type: 408,
-            message: 'Ha ocurrido un error al guardar los datos',
-            error: error
+            type: er.response.data.statusCode,
+            message: er.response.data.message,
+            error: er.response.error
         }
     }
     

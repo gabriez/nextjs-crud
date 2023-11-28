@@ -4,6 +4,7 @@ import { createVote } from "../lib/formAction"
 import { useFormStatus, useFormState} from 'react-dom';
 import axios from "axios";
 import { useRouter } from "next/navigation";
+import { toast } from "react-toastify";
 /* Componente encargado de mostrar los votos en una tabla*/
 
 const initialState = {
@@ -35,11 +36,10 @@ const FormVotes = ({}) => {
     } 
 
     const getCandidates = async () => {
-        const data = await axios(`${process.env.BACKEND_API}candidates`).then(response => response.json()).
-        catch(error => console.error('errrrrrrrrrrrrrrrrrrrroooooooooooooooooor ===>', error))
+        const data = await axios(`${process.env.BACKEND_API}candidates`).then(response => response.data.data).
+        catch(error => console.error(error))
         setListCandidates([...data]);
-
-}
+    }
 
     useEffect(() => {
        getCandidates();
@@ -47,7 +47,11 @@ const FormVotes = ({}) => {
     
     useEffect(() => {
         if (state.type === 200) {
+            toast.success('Se guardó su voto con éxito')
             router.push('/admin')
+        }
+        if (state.type === 400) {
+            toast.error(state.message)
         }
      },[state])
 
