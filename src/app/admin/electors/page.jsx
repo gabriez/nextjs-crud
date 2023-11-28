@@ -1,5 +1,11 @@
 import AddCandidate from "@/app/components/electors/AddCandidate"
 import ElectorsTable from "@/app/components/electors/ElectorsTable"
+
+export const metadata = {
+  title: 'Administrador - Agregar candidatos',
+  description: 'Agrega candidatos',
+}
+
 const page = () => {
   return (
     <>

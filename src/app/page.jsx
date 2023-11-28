@@ -1,5 +1,9 @@
-import axios from "axios";
 import FormVotes from "./components/FormVotes";
+
+export const metadata = {
+  title: 'Encuesta',
+  description: 'Encuesta sobre los mejores y peores candidatos electorales',
+}
 
 export default async function Home() {
   return (
