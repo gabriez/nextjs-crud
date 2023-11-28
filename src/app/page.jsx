@@ -1,15 +1,7 @@
 import axios from "axios";
 import FormVotes from "./components/FormVotes";
 
-// const getCandidates = async () => {
-//   const data = await axios(`${process.env.BACKEND_API}candidates`).then(data => data.data).
-//   catch(error => console.error('errrrrrrrrrrrrrrrrrrrroooooooooooooooooor ===>', error))
-//   return JSON.parse(JSON.stringify(data));
-// }
-
 export default async function Home() {
-  // const listCandidates = JSON.parse(JSON.stringify(await getCandidates()));
-
   return (
    <main className="bg-gray-900 pb-7">
       <h1 data-testid='heading' className="block bg-gray-800 text-center text-white font-bold text-4xl py-5">

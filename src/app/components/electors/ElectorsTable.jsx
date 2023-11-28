@@ -30,11 +30,7 @@ const ElectorsTable = () => {
 
       getCandidates()
       
-    }, [limit, candidateChange])
-
-    useEffect(() => {
-      getCandidates()
-    },[update])
+    }, [limit, candidateChange, update])
 
   const handleForward = () => { 
     setOffset( prevState => {
