@@ -2,7 +2,7 @@
 import { useSurveyContext } from "@/app/context/SurveyProvider"
 import { useEffect, useState } from "react";
 import axios from "axios";
-import Loader from "../loader";
+import Loading from "../Loading";
 
 const VotesTable = () => {
     const {getModalInfo} = useSurveyContext();
@@ -121,7 +121,7 @@ const VotesTable = () => {
                     (
                             <div className="mx-auto w-fit"> 
 
-                                <Loader/>
+                                <Loading/>
                             </div>
 
                     

@@ -142,7 +142,7 @@ const handleBackwards = () => {
                     (
                             <div className="mx-auto w-fit"> 
 
-                                <Loader/>
+                                <Loading/>
                             </div>
 
                     

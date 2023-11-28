@@ -1,5 +1,5 @@
 import { useSurveyContext } from "@/app/context/SurveyProvider"
-import Loader from "../loader";
+import Loading from "../Loading";
 const ModalCandidates = () => {
   const {handleModal, modalInfo} = useSurveyContext();
   if (!modalInfo.bestcandidate) {
@@ -7,7 +7,7 @@ const ModalCandidates = () => {
       <div className="w-2/4 h-2/4">
 
       <div className="mx-auto w-fit">
-        <Loader/>
+        <Loading/>
       </div>
       </div>
     )

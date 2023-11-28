@@ -1,9 +1,9 @@
 import React from 'react'
 
-const Loader = () => {
+const Loading = () => {
   return (
     <span className="loader"></span>
   )
 }
 
-export default Loader
+export default Loading
