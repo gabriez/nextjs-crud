@@ -53,7 +53,7 @@ const FormVotes = ({}) => {
         if (state.type === 400) {
             toast.error(state.message)
         }
-     },[state])
+     },[state, router])
 
   return (
     <form action={formAction}>

@@ -13,7 +13,16 @@ const ElectorsTable = () => {
     const [limit, setLimit] = useState(10)
     const [loading, setLoading] = useState(false)
 
-    const getCandidates = async () => {
+    
+
+    const deleteCandidate = async (id) => {
+      setLoading(true)
+      await axios.delete(`${process.env.BACKEND_API}candidates/${id}`).then(response => response).catch(error => console.error(error))
+      
+      setLimit(prevState => prevState - 1)
+    }
+    useEffect(()=> {
+      const getCandidates = async () => {
         setLoading(true)
         const {data} = await axios(`${process.env.BACKEND_API}candidates?limit=${limit}&offset=${offset}`).then(response => response).catch(error => console.error(error))
         if (data.count < limit || limit < 10) setLimit(data.count) 
@@ -21,14 +30,6 @@ const ElectorsTable = () => {
         setCandidates([...data.data])
         setLoading(false)
     }
-
-    const deleteCandidate = async (id) => {
-      setLoading(true)
-      await axios.delete(`${process.env.BACKEND_API}candidates/${id}`).then(response => response).catch(error => console.error(error))
-      await getCandidates()
-    }
-    useEffect(()=> {
-
       getCandidates()
       
     }, [limit, candidateChange, update])

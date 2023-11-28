@@ -11,15 +11,16 @@ const VotesTable = () => {
     const [offset, setOffset] = useState(0);
     const [limit, setLimit] = useState(10)
     const [loading, setLoading] = useState(false)
-    const getVotes = async () => {
-        setLoading(true)
-        const {data} = await axios(`${process.env.BACKEND_API}votes?limit=${limit}&offset=${offset}`).then(response => response).catch(error => console.error(error))
-        if (data.count < limit || limit < 10) setLimit(data.count) 
-        setCount(data.count)
-        setVotes(data.data)
-        setLoading(false)
-    }
+    
     useEffect(()=> {
+        const getVotes = async () => {
+            setLoading(true)
+            const {data} = await axios(`${process.env.BACKEND_API}votes?limit=${limit}&offset=${offset}`).then(response => response).catch(error => console.error(error))
+            if (data.count < limit || limit < 10) setLimit(data.count) 
+            setCount(data.count)
+            setVotes(data.data)
+            setLoading(false)
+        }
         getVotes()
     }, [limit])
 
