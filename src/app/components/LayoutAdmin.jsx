@@ -1,9 +1,10 @@
+"use client"
 import Sidebar from './Sidebar'
 import ModalCandidates from './admin/ModalCandidates'
 import Modal from 'react-modal'
 import { Squash as Hamburger } from "hamburger-react";
 import { useSurveyContext } from '../context/SurveyProvider'
-import { useState } from 'react';
+
 
 
 const customStyles = {
