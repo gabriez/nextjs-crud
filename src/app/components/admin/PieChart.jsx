@@ -55,87 +55,34 @@ const options = {
 }
 
 const PieChart = () => {
-  const [worstData, setWorstData] = useState({
-  labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-  color: '#FFF',
-  datasets: [
-    {
-      label: '# of Votes',
-      data: [12, 19, 3, 5, 2, 3],
-      backgroundColor: [
-        'rgba(255, 99, 132, 0.2)',
-        'rgba(54, 162, 235, 0.2)',
-        'rgba(255, 206, 86, 0.2)',
-        'rgba(75, 192, 192, 0.2)',
-        'rgba(153, 102, 255, 0.2)',
-        'rgba(255, 159, 64, 0.2)',
-      ],
-      borderColor: [
-        'rgba(255, 99, 132, 1)',
-        'rgba(54, 162, 235, 1)',
-        'rgba(255, 206, 86, 1)',
-        'rgba(75, 192, 192, 1)',
-        'rgba(153, 102, 255, 1)',
-        'rgba(255, 159, 64, 1)',
-      ],
-      borderWidth: 1,
-      color: '#FFF'
-    },
-  ]})
-  const [bestData, setBestData] = useState({
-    labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-  color: '#FFF',
-  datasets: [
-    {
-      label: '# of Votes',
-      data: [12, 19, 3, 5, 2, 3],
-      backgroundColor: [
-        'rgba(255, 99, 132, 0.2)',
-        'rgba(54, 162, 235, 0.2)',
-        'rgba(255, 206, 86, 0.2)',
-        'rgba(75, 192, 192, 0.2)',
-        'rgba(153, 102, 255, 0.2)',
-        'rgba(255, 159, 64, 0.2)',
-      ],
-      borderColor: [
-        'rgba(255, 99, 132, 1)',
-        'rgba(54, 162, 235, 1)',
-        'rgba(255, 206, 86, 1)',
-        'rgba(75, 192, 192, 1)',
-        'rgba(153, 102, 255, 1)',
-        'rgba(255, 159, 64, 1)',
-      ],
-      borderWidth: 1,
-      color: '#FFF'
-    },
-  ]
-  })
+  const [worstData, setWorstData] = useState({...data})
+  const [bestData, setBestData] = useState({...data })
 
   const getData = async () => {
     const {data} = await axios(`${process.env.NEXT_PUBLIC_BACKEND_API}count`).then(response => response).catch(error => console.error(error))
     setWorstData({
-      labels: data.countWorst.map(item => item.name),
+      labels: data.countWorst.length > 0 ? data.countWorst.map(item => item.name) : ['No hay votos'],
       color: '#FFF',
       datasets: [
         {
           label: '# of Votes',
-          data: data.countWorst.map(item => item.quantity),
-          backgroundColor:data.countWorst.map(item => item.color),
-          borderColor: data.countWorst.map(item => item.color),
+          data: data.countWorst.length > 0 ? data.countWorst.map(item => item.quantity) : [0],
+          backgroundColor: data.countWorst.length > 0 ? data.countWorst.map(item => item.color) : ['#FFF'],
+          borderColor: data.countWorst.length > 0 ? data.countWorst.map(item => item.color) : ['#FFF'],
           borderWidth: 1,
           color: '#FFF'
         },
       ]
     })
     setBestData({
-      labels: data.countBest.map(item => item.name),
+      labels: data.countBest.length > 0 ? data.countBest.map(item => item.name) : ['No hay votos'],
       color: '#FFF',
       datasets: [
         {
           label: '# of Votes',
-          data: data.countBest.map(item => item.quantity),
-          backgroundColor:data.countBest.map(item => item.color),
-          borderColor: data.countBest.map(item => item.color),
+          data: data.countBest.length > 0 ?  data.countBest.map(item => item.quantity) : [0],
+          backgroundColor:data.countBest.length > 0 ? data.countBest.map(item => item.color)  : ['#FFF'],
+          borderColor: data.countBest.length > 0 ? data.countBest.map(item => item.color)  : ['#FFF'],
           borderWidth: 1,
           color: '#FFF'
         },
