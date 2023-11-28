@@ -3,6 +3,7 @@ import { useSurveyContext } from "@/app/context/SurveyProvider"
 import { useEffect, useState } from "react";
 import axios from "axios";
 import Loading from "../Loading";
+import {randomId} from '../../lib/helpers.js'
 
 const VotesTable = () => {
     const {getModalInfo} = useSurveyContext();
@@ -15,7 +16,7 @@ const VotesTable = () => {
     useEffect(()=> {
         const getVotes = async () => {
             setLoading(true)
-            const {data} = await axios(`${process.env.BACKEND_API}votes?limit=${limit}&offset=${offset}`).then(response => response).catch(error => console.error(error))
+            const data = await axios(`${process.env.BACKEND_API}votes?limit=${limit}&offset=${offset}`).then(response => response.data).catch(error => console.error(error))
             if (data.count < limit || limit < 10) setLimit(data.count) 
             setCount(data.count)
             setVotes(data.data)
@@ -83,7 +84,7 @@ const VotesTable = () => {
                 {
                     votes.length > 0 && votes.map(vote => 
                         (
-                        <tr className="cursor-pointer" onClick={() => {
+                        <tr key={randomId()} className="cursor-pointer" onClick={() => {
                             getModalInfo(
                                 {
                                     bestcandidate: vote.bestcandidate.name,
@@ -139,16 +140,16 @@ const VotesTable = () => {
         </span>
         <div className="inline-flex mt-2 xs:mt-0">
 
-            <button onClick={handleBackwards} disabled={limit - 10 <= 0} className={`flex items-center justify-center px-4 h-10 text-base font-medium rounded-s  dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 ${limit >= count ?? 'dark:hover:bg-gray-700 dark:hover:text-white' } `}>
+            <button onClick={handleBackwards} disabled={limit - 10 <= 0} className={`flex items-center justify-center px-4 h-10 text-base font-medium rounded-s  dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 ${offset > 0 ? 'dark:hover:bg-gray-700 dark:hover:text-white' : '' } `}>
                 <svg className="w-3.5 h-3.5 me-2 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
-                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 5H1m0 0 4 4M1 5l4-4" />
+                    <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 5H1m0 0 4 4M1 5l4-4" />
                 </svg>
                 Atrás
             </button>
-            <button onClick={handleForward} disabled={limit >= count} className={`flex items-center justify-center px-4 h-10 text-base font-medium border-0 border-s  rounded-e  dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 ${limit >= count ?? 'dark:hover:bg-gray-700 dark:hover:text-white' }  `}>
+            <button onClick={handleForward} disabled={limit >= count} className={`flex items-center justify-center px-4 h-10 text-base font-medium border-0 border-s  rounded-e  dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 ${limit < count ? 'dark:hover:bg-gray-700 dark:hover:text-white' : '' }  `}>
                 Siguiente
                 <svg className="w-3.5 h-3.5 ms-2 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
-                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9" />
+                    <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M1 5h12m0 0L9 1m4 4L9 9" />
                 </svg>
             </button>
         </div>
