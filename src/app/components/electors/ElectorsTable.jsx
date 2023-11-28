@@ -10,10 +10,10 @@ const ElectorsTable = () => {
   const {editCandidate, candidate: candidateChange, update} = useSurveyContext();
 
   const [candidates, setCandidates] = useState([]);
-    const [count, setCount] = useState(0)
+    const [count, setCount] = useState(0);
     const [offset, setOffset] = useState(0);
-    const [limit, setLimit] = useState(10)
-    const [loading, setLoading] = useState(false)
+    const [limit, setLimit] = useState(10);
+    const [loading, setLoading] = useState(false);
 
     
 
@@ -101,7 +101,7 @@ const handleBackwards = () => {
           <tbody>
             {
               candidates.length > 0 && candidates.map(candidate => (
-              <tr>
+              <tr key={randomId()}>
               <td className="border-gray-600 border px-4 py-3">
                 {candidate.name}
               </td>
