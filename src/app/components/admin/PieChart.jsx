@@ -17,7 +17,7 @@ export const data = {
       borderColor:  ['#48ad86'],
       borderWidth: 1,
       color: '#FFF'
-    },
+    }
   ]
 };
 
