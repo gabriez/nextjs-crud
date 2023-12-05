@@ -61,7 +61,7 @@ const FormVotes = ({}) => {
             <label className="block mb-2 text-xl font-medium" htmlFor="bestCandidate">
                 ¿Por qué candidato votarías? <span className="text-red-500 text-sm">*</span>
             </label>
-            <select className="block  bg-gray-800 rounded px-3 py-4" name="bestCandidate" id='bestCandidate'>
+            <select className="block autofill:bg-gray-800 bg-gray-800 rounded px-3 py-4" name="bestCandidate" id='bestCandidate'>
                  <option value=''>
                 </option>
 
@@ -78,7 +78,7 @@ const FormVotes = ({}) => {
             <label className="block mb-2 text-xl font-medium" htmlFor="bestCDescription">
                 ¿Por qué votarías por el candidato que seleccionaste? <span className="text-red-500 text-sm">*</span>
             </label>
-            <textarea className="block resize-none w-full h-28 bg-gray-800 
+            <textarea className="block resize-none w-full h-28 autofill:bg-gray-800 bg-gray-800 
             rounded-md p-2 outline-none" name="bestCDescription" id="bestCDescription"></textarea>
             {showErrors('bestCDescription') && (<p className="text-white mt-2 bg-red-500 rounded px-2 py-2 w-fit text-sm"> {showMessage('bestCDescription')} </p>)}
 
@@ -87,7 +87,7 @@ const FormVotes = ({}) => {
             <label className="block mb-2 text-xl font-medium" htmlFor="worstCandidate">
                 ¿Cuál es el peor candidato por el cual votar? <span className="text-red-500 text-sm">*</span>
             </label>
-            <select className="block bg-gray-800 rounded px-3 py-4" name="worstCandidate" id="worstCandidate">
+            <select className="block autofill:bg-gray-800 bg-gray-800 rounded px-3 py-4" name="worstCandidate" id="worstCandidate">
             <option value=''>
                 </option>
                 { listCandidates?.length > 0 && listCandidates.map(candidato => (
@@ -103,7 +103,7 @@ const FormVotes = ({}) => {
             <label className="block mb-2 text-xl font-medium" htmlFor="worstCDescription">
                 ¿Por qué es la peor elección votar por el candidato seleccionado? <span className="text-red-500 text-sm">*</span>
             </label>
-            <textarea className="block resize-none w-full h-28 bg-gray-800 
+            <textarea className="block autofill:bg-gray-800 resize-none w-full h-28 bg-gray-800 
             rounded-md p-2 outline-none" name="worstCDescription" id="worstCDescription"></textarea>
             {showErrors('worstCDescription') && (<p className="text-white mt-2 bg-red-500 rounded px-2 py-2 w-fit text-sm">{showMessage('worstCDescription')} </p>)}
 
@@ -112,7 +112,7 @@ const FormVotes = ({}) => {
             <label className="block mb-2 text-xl font-medium" htmlFor="email">
                 Correo <span className="text-red-500 text-sm">*</span>
             </label>
-            <input className="block bg-gray-800 
+            <input className="block bg-gray-800 autofill:bg-gray-800 
             rounded-md px-3 py-4 outline-none w-full sm:w-80 " 
             placeholder="Ejemp: javier@gmail.com"
             type="email" name="email" id="email" />
@@ -123,7 +123,7 @@ const FormVotes = ({}) => {
             <label className="block mb-2 text-xl font-medium" htmlFor="media">
                 ¿Cómo obtuviste esta encuesta? 
             </label>
-            <select className="block bg-gray-800 rounded px-3 py-4 " name="media" id="media" defaultValue=''>
+            <select className="block autofill:bg-gray-800 bg-gray-800 rounded px-3 py-4 " name="media" id="media" defaultValue=''>
                 <option value=''>
                 </option>
                 {mediaOptions.map(media => (
